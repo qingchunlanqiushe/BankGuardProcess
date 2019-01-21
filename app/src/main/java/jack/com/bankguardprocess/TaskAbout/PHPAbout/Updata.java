@@ -138,7 +138,8 @@ public class Updata {
         View v = inflater.inflate(R.layout.softupdate_progress, null);
         mProgress = (ProgressBar) v.findViewById(R.id.update_progress);
         dialog.setView(v);
-        //如果是强制更新，则不显示取消按钮
+
+        //如果不是强制更新，则显示取消按钮
         if (forceUpdate == false) {
             dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
@@ -302,7 +303,7 @@ public class Updata {
                             if(numread <= 0){
                                 //下载完成通知安装
                                 installAPK(mSaveFileName);
-                                if (i==0)
+                                if (mSaveFileName.contains("bankxposed")) //如果是xposed
                                     Thread.sleep(10*1000);
                                 break;
                             }

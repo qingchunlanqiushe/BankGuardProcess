@@ -64,7 +64,7 @@ public class AccountInfo {
             accountName = infoJSONObject.getString("accountName");
            // Log.i("GuardProcess","accountName"+accountName);
 
-            // group = infoJSONObject.getString("Group");
+             group = infoJSONObject.getString("Group");
 
     }
 }

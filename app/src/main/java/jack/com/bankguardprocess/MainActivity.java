@@ -24,6 +24,7 @@ import jack.com.bankguardprocess.TaskAbout.PHPAbout.Updata;
 
 import static jack.com.bankguardprocess.common.AccountInfo.getAccountName;
 import static jack.com.bankguardprocess.common.AccountInfo.getCardNo;
+import static jack.com.bankguardprocess.common.AccountInfo.getGroup;
 import static jack.com.bankguardprocess.common.AccountInfo.getloginPwd;
 import static jack.com.bankguardprocess.common.AccountInfo.parseConfigFile;
 
@@ -164,7 +165,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             TextView tvCardInfo = (TextView)findViewById(R.id.curCardInfo);
 
-            String strCardInfo = "配置文件的信息:"+"\n"+"当前账户:"+getAccountName()+"\n"+"当前卡号:"+getCardNo()+"\n"+"当前登陆密码:"+getloginPwd();
+            String strCardInfo = "配置文件的信息:"+"\n"+"当前账户:"+getAccountName()+"\n"+"当前卡号:"+getCardNo()+"\n"+"当前登陆密码:"+getloginPwd()+"\n"+"当前分组:"+getGroup();
 
             tvCardInfo.setText(strCardInfo);
 
