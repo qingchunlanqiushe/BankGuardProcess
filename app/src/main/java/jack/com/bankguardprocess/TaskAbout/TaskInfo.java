@@ -66,13 +66,54 @@ public class TaskInfo {
         return  strJsonTask;
     }
 
+//{"task":{"opt_card":"6226220636262437","type":4}}  获取流水
+//{"task":{"opt_card":"6226220636262437","type":3}}  获取余额
+
 
     public static  String createGetBalanceTask(){
-        return  "getBalance";
+
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+
+            JSONObject jsonObject1 = new JSONObject();
+            jsonObject1.put("opt_card",getCardNo());
+            jsonObject1.put("type",3);
+
+            jsonObject.put("task",jsonObject1);
+
+            return jsonObject.toString();
+        }
+        catch (Exception e){
+
+
+        }
+
+        return  "";
+
+    //    return  "getBalance";
     }
 
     public static  String craeteJiaoYiMingXiTask(){
-        return  "getJiaoYiMingXi";
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+
+            JSONObject jsonObject1 = new JSONObject();
+            jsonObject1.put("opt_card",getCardNo());
+            jsonObject1.put("type",4);
+
+            jsonObject.put("task",jsonObject1);
+
+            return jsonObject.toString();
+        }
+        catch (Exception e){
+
+
+        }
+        return  "";
+
+       // return  "getJiaoYiMingXi";
     }
 
 
@@ -117,7 +158,7 @@ public class TaskInfo {
 
 
     //创建转账任务
-    public static String createTaskResult(TaskInfo taskinfo,String nTaskResult,String failedReason,String Base64Bmp){
+    public static String createTransTaskResult(TaskInfo taskinfo, String nTaskResult, String failedReason, String Base64Bmp){
 
         String strJsonTask = "";
 

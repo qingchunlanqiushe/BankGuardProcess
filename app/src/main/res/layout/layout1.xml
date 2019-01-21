@@ -27,4 +27,11 @@
         android:layout_height="wrap_content"
         android:text="当前版本：" />
 
+
+    <TextView
+        android:padding="30dp"
+        android:id="@+id/curCardInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

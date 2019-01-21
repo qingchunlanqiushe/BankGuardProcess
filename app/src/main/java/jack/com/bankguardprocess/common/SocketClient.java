@@ -132,26 +132,17 @@ public class SocketClient {
     }
 
     public boolean sendRawMsg(String strTask){
-
-        try {
-            try
-            {
-                OutputStream os = socket.getOutputStream();
-                byte[] byteArray = Base64.encode(strTask.getBytes(), Base64.NO_PADDING | Base64.NO_WRAP);
-                os.write(intToByteArray(byteArray.length));
-                os.write(byteArray);
-            } catch (IOException e)
-            {
-                Log.i(TAG,Log.getStackTraceString(e));
-                return false;
-            }
-
-
+        try
+        {
+            OutputStream os = socket.getOutputStream();
+            byte[] byteArray = Base64.encode(strTask.getBytes(), Base64.NO_PADDING | Base64.NO_WRAP);
+            os.write(intToByteArray(byteArray.length));
+            os.write(byteArray);
         }
-        catch (Exception e){
-
-           // Log.i(TAG,Log.getStackTraceString(e));
-            return  false;
+        catch (Exception e)
+        {
+            Log.i(TAG,Log.getStackTraceString(e));
+            return false;
         }
         return  true;
     }

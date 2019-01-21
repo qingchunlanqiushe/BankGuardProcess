@@ -213,8 +213,6 @@ public class Updata {
                 list.add(pair1);
             }
 
-
-
         }
         catch (Exception e){
             Log.i("xposed",Log.getStackTraceString(e));

@@ -22,6 +22,9 @@ import jack.com.bankguardprocess.common.MacUtils;
 import jack.com.bankguardprocess.common.Tool;
 import jack.com.bankguardprocess.TaskAbout.PHPAbout.Updata;
 
+import static jack.com.bankguardprocess.common.AccountInfo.getAccountName;
+import static jack.com.bankguardprocess.common.AccountInfo.getCardNo;
+import static jack.com.bankguardprocess.common.AccountInfo.getloginPwd;
 import static jack.com.bankguardprocess.common.AccountInfo.parseConfigFile;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -154,22 +157,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         FileConfig.deletefile("/sdcard/");
 
-        //  transfersInterface = new TransfersInterface(MainActivity.this,myHandler);
-
-       // serverfinally = new ServerFinally(new RealMsgCallBackRunnable());
-        //new Thread(serverfinally).start();
-
-       // sendIPToUI();
-
 
         //读取配置文件
         try {
             parseConfigFile();
+
+            TextView tvCardInfo = (TextView)findViewById(R.id.curCardInfo);
+
+            String strCardInfo = "配置文件的信息:"+"\n"+"当前账户:"+getAccountName()+"\n"+"当前卡号:"+getCardNo()+"\n"+"当前登陆密码:"+getloginPwd();
+
+            tvCardInfo.setText(strCardInfo);
+
+            mUpdateManager.postData();
         }
         catch (Exception e){
             tvTaskState.setText("配置文件读取错误，请检查是否存在以及参数是否齐全");
+            btnStart.setEnabled(false);
 
         }
+
+
     }
 
     /**
@@ -184,78 +191,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         tvTaskState.setText("开始执行任务");
 
-      // new Thread(new WorkThread(myHandler)).start();
 
-
-//        {
-//“Uuid”:”123E4567-E89B-12D3-A456-556642440000”
-//“Type”:2			//BankTransfers
-//“Time”:”15887789789” //服务端的时间
-//            "Body":
-//            {
-//        "BankCardNo": "6217000360006309100",
-//                "AccountName": "柳波",
-//                "BankShortName": "CCB",
-//                "OpenAccountBranch": "中国建设银行",
-//                "OrderNo": "AA0980209617594225",
-//                "TransferAmount": 1.00   //浮点数 保留2位小数 单位元
-//        "CurrentBalance": 1.00，//后台记录的卡余额，如果机器收到订单后发现此余额和机器余额不匹配，就返回”余额不匹配的“的错误，相应增加一个错误码及错误描述
-//        "ProvKeyName ": "山西省",
-//                "CityKeyName ": "太原市",
-//                "NetKeyName": "太原钢城支行"
-
-//
-//            }
-//        }
-
-
-//        try {
-//            JSONObject jsonObject = new JSONObject();
-//
-//            jsonObject.put("Uuid","123E4567-E89B-12D3-A456-556642440000");
-//
-//            jsonObject.put("Type",2);
-//
-//            jsonObject.put("Time","15887789789");
-//
-//            JSONObject jsonObject1 = new JSONObject();
-//
-//            jsonObject1.put("BankCardNo","6226223009512891");
-//            jsonObject1.put("AccountName","郑永帅");
-//            jsonObject1.put("BankShortName","CMBC");
-//            jsonObject1.put("TransferAmount",1.00);
-//
-//            JSONArray ary = new JSONArray();
-//            ary.put(jsonObject1);
-//            JSONObject OrderList = new JSONObject();
-//            OrderList.put("OrderList",ary);
-//            jsonObject.put("Body",OrderList);
-//            Thread.sleep(5*1000);
-//            serverfinally.send(jsonObject.toString());
-//
-//        }
-//        catch (Exception e){
-//
-//            Log.i("GuardProcess",Log.getStackTraceString(e));
-//        }
-
-
-
-//        try {
-//           // Thread.sleep(5*1000);
-//            transfersInterface.CreateRemitter();
-//
-//        }
-//        catch (Exception e){
-//
-//        }
-
-//
-     //   new Thread(new RecvTaskThread(this,myHandler)).start();
-
-        mUpdateManager.postData();
-
-
-       // new Thread(new PHPTask(myHandler)).start();
+       new Thread(new PHPTask(myHandler)).start();
     }
 }
