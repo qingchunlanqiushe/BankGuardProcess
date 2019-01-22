@@ -157,7 +157,6 @@ public class PHPTask implements Runnable{
 
             while (true){
 
-                //每隔五分钟取一次
                 try {
                     Thread.sleep(timeInterval);
                 } catch (InterruptedException e) {
